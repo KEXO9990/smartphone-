@@ -1,0 +1,64 @@
+<Window x:Class="MobileShopApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Chiko Mobile Shop Management" Height="700" Width="1200" WindowStartupLocation="CenterScreen" Background="#f5f5f5">
+    <Grid>
+        <DockPanel>
+            <StackPanel Background="#2c3e50" Width="220" DockPanel.Dock="Left">
+                <TextBlock Text="📱 Chiko Mobile Shop" Foreground="White" FontSize="18" FontWeight="Bold" Margin="10" TextAlignment="Center" />
+                <Separator Background="#34495e" Margin="10,5"/>
+                
+                <Button Content="🏠 Dashboard" Margin="10,5" Height="45" Background="#34495e" Foreground="White" BorderThickness="0" FontSize="14" Click="Dashboard_Click"/>
+                <Button Content="📦 Products" Margin="10,5" Height="45" Background="#34495e" Foreground="White" BorderThickness="0" FontSize="14" Click="Products_Click" />
+                <Button Content="🧾 Invoices" Margin="10,5" Height="45" Background="#34495e" Foreground="White" BorderThickness="0" FontSize="14" Click="Sales_Click" />
+                <Button Content="🧾 Orders" Margin="10,5" Height="45" Background="#34495e" Foreground="White" BorderThickness="0" FontSize="14" Click="Orders_Click" />
+                <Button Content="📊 Reports" Margin="10,5" Height="45" Background="#34495e" Foreground="White" BorderThickness="0" FontSize="14" Click="Reports_Click" />
+                
+                <Separator Background="#34495e" Margin="10,20,10,10"/>
+                <Button Content="💾 Backup Database" Margin="10,5" Height="45" Background="#27ae60" Foreground="White" BorderThickness="0" FontSize="14" Click="Backup_Click" />
+                <Button Content="📂 Restore Database" Margin="10,5" Height="45" Background="#e67e22" Foreground="White" BorderThickness="0" FontSize="14" Click="Restore_Click" />
+                
+                <Separator Background="#34495e" Margin="10,20,10,10"/>
+                <Button Content="⚙️ Settings" Margin="10,5" Height="45" Background="#34495e" Foreground="White" BorderThickness="0" FontSize="14" Click="Settings_Click" />
+                <Button Content="❌ Exit" Margin="10,5" Height="45" Background="#e74c3c" Foreground="White" BorderThickness="0" FontSize="14" Click="Exit_Click" />
+            </StackPanel>
+            
+            <Grid Name="MainContent" Background="White">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="📱 Welcome to Chiko Mobile Shop Management System" FontSize="28" FontWeight="Bold" Foreground="#2c3e50" TextAlignment="Center" Margin="0,0,0,20" />
+                    <TextBlock Text="Select an option from the sidebar to get started" FontSize="16" Foreground="#7f8c8d" TextAlignment="Center" />
+                    
+                    <WrapPanel HorizontalAlignment="Center" Margin="0,40,0,0">
+                        <Border Background="#3498db" CornerRadius="10" Margin="10" Padding="20" Width="180" Height="120">
+                            <StackPanel>
+                                <TextBlock Text="📦" FontSize="36" TextAlignment="Center" Foreground="White"/>
+                                <TextBlock Text="Manage Products" FontSize="14" FontWeight="Bold" TextAlignment="Center" Foreground="White" Margin="0,10,0,0"/>
+                            </StackPanel>
+                        </Border>
+                        
+                        <Border Background="#27ae60" CornerRadius="10" Margin="10" Padding="20" Width="180" Height="120">
+                            <StackPanel>
+                                <TextBlock Text="👥" FontSize="36" TextAlignment="Center" Foreground="White"/>
+                                <TextBlock Text="View Invoices" FontSize="14" FontWeight="Bold" TextAlignment="Center" Foreground="White" Margin="0,10,0,0"/>
+                            </StackPanel>
+                        </Border>
+                        
+                        <Border Background="#e74c3c" CornerRadius="10" Margin="10" Padding="20" Width="180" Height="120">
+                            <StackPanel>
+                                <TextBlock Text="🧾" FontSize="36" TextAlignment="Center" Foreground="White"/>
+                                <TextBlock Text="Process Orders" FontSize="14" FontWeight="Bold" TextAlignment="Center" Foreground="White" Margin="0,10,0,0"/>
+                            </StackPanel>
+                        </Border>
+                        
+                        <Border Background="#f39c12" CornerRadius="10" Margin="10" Padding="20" Width="180" Height="120">
+                            <StackPanel>
+                                <TextBlock Text="📊" FontSize="36" TextAlignment="Center" Foreground="White"/>
+                                <TextBlock Text="View Reports" FontSize="14" FontWeight="Bold" TextAlignment="Center" Foreground="White" Margin="0,10,0,0"/>
+                            </StackPanel>
+                        </Border>
+                    </WrapPanel>
+                </StackPanel>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,139 @@
+﻿<Window x:Class="MobileShopApp.Views.NewSaleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="New Sale" Height="700" Width="900" WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" Text="New Sale" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" Foreground="#2c3e50"/>
+
+        <!-- Customer Info -->
+        <Grid Grid.Row="1" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Label Grid.Column="0" Content="Customer Name:" VerticalAlignment="Center" FontWeight="Bold"/>
+            <TextBox Grid.Column="1" x:Name="CustomerNameTextBox" Height="30" Margin="5,0,15,0" 
+                     ToolTip="Optional - Leave blank for walk-in customer"/>
+            
+            <Label Grid.Column="2" Content="Phone:" VerticalAlignment="Center" FontWeight="Bold"/>
+            <TextBox Grid.Column="3" x:Name="CustomerPhoneTextBox" Height="30" Margin="5,0,15,0" 
+                     ToolTip="Optional"/>
+            
+            <Label Grid.Column="4" Content="Payment Method:" VerticalAlignment="Center" FontWeight="Bold"/>
+            <ComboBox Grid.Column="5" x:Name="PaymentMethodComboBox" Height="30" Margin="5,0,0,0">
+                <ComboBoxItem Content="Cash" IsSelected="True"/>
+                <ComboBoxItem Content="Credit Card"/>
+                <ComboBoxItem Content="Bank Transfer"/>
+                <ComboBoxItem Content="Check"/>
+            </ComboBox>
+        </Grid>
+
+        <!-- Products Section -->
+        <Border Grid.Row="2" BorderBrush="#bdc3c7" BorderThickness="1" Padding="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Products" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                
+                <!-- Add Product Section -->
+                <Grid Grid.Row="1" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <ComboBox Grid.Column="0" x:Name="ProductComboBox" Height="30" 
+                              DisplayMemberPath="Name" SelectedValuePath="Id"/>
+                    <TextBox Grid.Column="1" x:Name="QuantityTextBox" Height="30" Margin="10,0,0,0" 
+                             Text="1" VerticalContentAlignment="Center" TextAlignment="Center"/>
+                    <Button Grid.Column="2" Content="Add" Height="30" Width="80" Margin="10,0,0,0"
+                            Click="AddProduct_Click" Background="#27ae60" Foreground="White" BorderThickness="0"/>
+                </Grid>
+
+                <!-- Sale Items DataGrid -->
+                <DataGrid Grid.Row="2" x:Name="SaleItemsDataGrid" AutoGenerateColumns="False" 
+                          CanUserAddRows="False" CanUserDeleteRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Product" Binding="{Binding ProductName}" Width="200" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="80" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Unit Price" Binding="{Binding UnitPrice, StringFormat=C}" Width="100" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Total" Binding="{Binding TotalPrice, StringFormat=C}" Width="100" IsReadOnly="True"/>
+                        <DataGridTemplateColumn Header="Action" Width="80">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Remove" Width="60" Height="25" 
+                                            Click="RemoveProduct_Click" Background="#e74c3c" Foreground="White" BorderThickness="0"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+
+        <!-- Totals Section -->
+        <Grid Grid.Row="3" Margin="0,20,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Column="1">
+                <Grid Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Subtotal:" FontWeight="Bold"/>
+                    <TextBlock Grid.Column="1" x:Name="SubtotalText" Text="$0.00" HorizontalAlignment="Right"/>
+                </Grid>
+                
+                <Grid Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Discount:" FontWeight="Bold"/>
+                    <TextBox Grid.Column="1" x:Name="DiscountTextBox" Text="0" TextAlignment="Right" 
+                             Height="25" TextChanged="DiscountTextBox_TextChanged"/>
+                </Grid>
+                
+                <Grid Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Total:" FontSize="16" FontWeight="Bold"/>
+                    <TextBlock Grid.Column="1" x:Name="TotalText" Text="$0.00" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Complete Sale" Width="130" Height="40" Margin="0,0,10,0" 
+                    Click="CompleteSale_Click" Background="#27ae60" Foreground="White" BorderThickness="0"/>
+            <Button Content="Cancel" Width="100" Height="40" 
+                    Click="Cancel_Click" Background="#e74c3c" Foreground="White" BorderThickness="0"/>
+        </StackPanel>
+    </Grid>
+</Window>

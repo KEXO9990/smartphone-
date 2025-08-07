@@ -1,0 +1,91 @@
+<Window x:Class="MobileShopApp.Views.AddEditProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add/Edit Product" Height="600" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" x:Name="HeaderText" Text="📝 Add New Product" FontSize="20" FontWeight="Bold" 
+                   Margin="0,0,0,20" Foreground="#2c3e50"/>
+
+        <!-- Form -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Product Name -->
+                <Label Content="Product Name *" FontWeight="Bold"/>
+                <TextBox x:Name="NameTextBox" Height="30" Margin="0,5,0,15" BorderBrush="#bdc3c7"/>
+                
+                <!-- Brand -->
+                <Label Content="Brand *" FontWeight="Bold"/>
+                <TextBox x:Name="BrandTextBox" Height="30" Margin="0,5,0,15" BorderBrush="#bdc3c7"/>
+                
+                <!-- Model -->
+                <Label Content="Model *" FontWeight="Bold"/>
+                <TextBox x:Name="ModelTextBox" Height="30" Margin="0,5,0,15" BorderBrush="#bdc3c7"/>
+                
+                <!-- Category -->
+                <Label Content="Category" FontWeight="Bold"/>
+                <ComboBox x:Name="CategoryComboBox" Height="30" Margin="0,5,0,15" BorderBrush="#bdc3c7" IsEditable="True">
+                    <ComboBoxItem Content="Smartphones"/>
+                    <ComboBoxItem Content="Tablets"/>
+                    <ComboBoxItem Content="Accessories"/>
+                    <ComboBoxItem Content="Cases"/>
+                    <ComboBoxItem Content="Chargers"/>
+                    <ComboBoxItem Content="Headphones"/>
+                    <ComboBoxItem Content="Screen Protectors"/>
+                </ComboBox>
+                
+                <!-- Price -->
+                <Label Content="Selling Price *" FontWeight="Bold"/>
+                <TextBox x:Name="PriceTextBox" Height="30" Margin="0,5,0,15" BorderBrush="#bdc3c7"/>
+                
+                <!-- Cost Price -->
+                <Label Content="Cost Price *" FontWeight="Bold"/>
+                <TextBox x:Name="CostPriceTextBox" Height="30" Margin="0,5,0,15" BorderBrush="#bdc3c7"/>
+                
+                <!-- Quantity -->
+                <Label Content="Quantity *" FontWeight="Bold"/>
+                <TextBox x:Name="QuantityTextBox" Height="30" Margin="0,5,0,15" BorderBrush="#bdc3c7"/>
+                
+                <!-- Low Stock Threshold -->
+                <Label Content="Low Stock Alert Threshold" FontWeight="Bold"/>
+                <TextBox x:Name="LowStockTextBox" Height="30" Margin="0,5,0,15" BorderBrush="#bdc3c7" Text="5"/>
+                
+                <!-- Serial Number -->
+                <Label Content="Serial Number" FontWeight="Bold"/>
+                <TextBox x:Name="SerialNumberTextBox" Height="30" Margin="0,5,0,15" BorderBrush="#bdc3c7"/>
+                
+                <!-- Warranty -->
+                <Label Content="Warranty Period" FontWeight="Bold"/>
+                <ComboBox x:Name="WarrantyComboBox" Height="30" Margin="0,5,0,15" BorderBrush="#bdc3c7" IsEditable="True">
+                    <ComboBoxItem Content="No Warranty"/>
+                    <ComboBoxItem Content="6 Months"/>
+                    <ComboBoxItem Content="1 Year"/>
+                    <ComboBoxItem Content="2 Years"/>
+                </ComboBox>
+                
+                <!-- Description -->
+                <Label Content="Description" FontWeight="Bold"/>
+                <TextBox x:Name="DescriptionTextBox" Height="80" Margin="0,5,0,15" BorderBrush="#bdc3c7" 
+                         TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+                
+                <!-- Is Available -->
+                <CheckBox x:Name="IsAvailableCheckBox" Content="Product is Available" FontWeight="Bold" 
+                          Margin="0,10,0,15" IsChecked="True"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="💾 Save" Width="100" Height="35" Margin="0,0,10,0" 
+                    Click="Save_Click" Background="#27ae60" Foreground="White" BorderThickness="0"/>
+            <Button Content="❌ Cancel" Width="100" Height="35" 
+                    Click="Cancel_Click" Background="#e74c3c" Foreground="White" BorderThickness="0"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,67 @@
+<Window x:Class="MobileShopApp.Views.SalesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sales Management" Height="800" Width="1400" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" Text="🧾 Sales Management" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" Foreground="#2c3e50"/>
+
+        <!-- Controls -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,15">
+            <Button Content="🆕 New Sale" Height="35" Width="120" Margin="0,0,10,0"
+                    Click="NewSale_Click" Background="#27ae60" Foreground="White" BorderThickness="0"/>
+            <Button Content="🔍 View Details" Height="35" Width="120" Margin="0,0,10,0"
+                    Click="ViewDetails_Click" Background="#3498db" Foreground="White" BorderThickness="0"/>
+            <Button Content="🖨️ Print Invoice" Height="35" Width="120" Margin="0,0,10,0"
+                    Click="PrintInvoice_Click" Background="#f39c12" Foreground="White" BorderThickness="0"/>
+            <Button Content="🔄 Refresh" Height="35" Width="100" Margin="20,0,0,0"
+                    Click="Refresh_Click" Background="#95a5a6" Foreground="White" BorderThickness="0"/>
+        </StackPanel>
+
+        <!-- Sales DataGrid -->
+        <DataGrid Grid.Row="2" x:Name="SalesDataGrid" AutoGenerateColumns="False" 
+                  CanUserAddRows="False" CanUserDeleteRows="False" 
+                  GridLinesVisibility="Horizontal" HeadersVisibility="Column"
+                  BorderBrush="#ecf0f1" BorderThickness="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Invoice #" Binding="{Binding InvoiceNumber}" Width="120" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding SaleDate, StringFormat=dd/MM/yyyy HH:mm}" Width="140" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Customer" Binding="{Binding CustomerName}" Width="150" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Total Amount" Binding="{Binding TotalAmount, StringFormat=C}" Width="120" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Discount" Binding="{Binding DiscountAmount, StringFormat=C}" Width="100" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Final Amount" Binding="{Binding FinalAmount, StringFormat=C}" Width="120" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Payment Method" Binding="{Binding PaymentMethod}" Width="130" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="200" IsReadOnly="True"/>
+                <DataGridTemplateColumn Header="Actions" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="👁️" Width="30" Height="25" Margin="2" 
+                                        Click="ViewDetails_Click" Background="#3498db" Foreground="White" BorderThickness="0"/>
+                                <Button Content="🖨️" Width="30" Height="25" Margin="2" 
+                                        Click="PrintInvoice_Click" Background="#f39c12" Foreground="White" BorderThickness="0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Status Bar -->
+        <StatusBar Grid.Row="3" Height="25" Background="#ecf0f1">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusText" Text="Ready"/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock x:Name="CountText" Text="Total Sales: 0"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
