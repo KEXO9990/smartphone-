@@ -14,7 +14,7 @@ namespace MobileShopApp
 
         public MainWindow()
         {
-            InitializeComponent();
+             InitializeComponent();
             _databaseService = new DatabaseService();
         }
 
